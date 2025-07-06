@@ -45,6 +45,7 @@ RUN pecl channel-update pecl.php.net && pecl install \
     redis-6.2.0 \
     ssh2-1.4.1 \
     swoole-6.0.2 \
+    xdebug-3.4.2 \
     imagick-3.8.0RC2 \
   && pecl clear-cache \
   && rm -rf /tmp/pear
@@ -76,7 +77,8 @@ RUN docker-php-ext-configure \
   && docker-php-ext-enable \
     imagick \
     redis \
-    ssh2
+    ssh2 \
+    xdebug
 
 RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
     && architecture=$(uname -m) \
@@ -100,6 +102,7 @@ COPY conf/blackfire.ini $PHP_INI_DIR/conf.d/blackfire.ini
 COPY conf/spx.ini $PHP_INI_DIR/conf.d/spx.ini
 COPY conf/msmtprc /etc/msmtprc
 COPY conf/php.ini $PHP_INI_DIR
+COPY conf/php-xdebug.ini $PHP_INI_DIR/conf.d/
 COPY conf/php-fpm.conf /usr/local/etc/
 COPY conf/www.conf /usr/local/etc/php-fpm.d/
 
