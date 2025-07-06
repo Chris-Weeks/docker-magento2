@@ -14,7 +14,7 @@ services:
   app:
     # image: markoshust/magento-nginx:1.24-0
     build:
-      context: ../images/nginx/1.24
+      context: ./images/nginx/1.24
       dockerfile: Dockerfile
     ports:
       - "80:8000"
@@ -35,7 +35,7 @@ services:
   phpfpm:
     # image: markoshust/magento-php:8.3-fpm-4
     build:
-      context: ../images/php/8.3
+      context: ./images/php/8.3
       dockerfile: Dockerfile
     volumes: *appvolumes
     env_file: env/phpfpm.env
@@ -44,7 +44,7 @@ services:
   phpfpm-xdebug:
     # image: markoshust/magento-php:8.3-fpm-4
     build:
-      context: ../images/php/8.3-xdebug
+      context: ./images/php/8.3-xdebug
       dockerfile: Dockerfile
     volumes: *appvolumes
     env_file: 
